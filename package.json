@@ -1,0 +1,22 @@
+{
+  "name": "trie-algorithm-visualisation",
+  "version": "1.0.0",
+  "description": "Visualisation of the Trie data structure algorithm",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server",
+    "dev": "nodemon server"
+  },
+  "author": "Jaak Kivinukk",
+  "license": "MIT",
+  "dependencies": {
+    "config": "^3.3.1",
+    "express": "^4.17.1",
+    "express-validator": "^6.5.0",
+    "mongoose": "^5.9.18"
+  },
+  "devDependencies": {
+    "concurrently": "^5.2.0",
+    "nodemon": "^2.0.4"
+  }
+}
