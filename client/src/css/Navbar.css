@@ -86,10 +86,10 @@
 
 @media screen and (max-width: 500px) {
   .navbar h2 .nav-link {
-    font-size: 14px;
+    font-size: 12px;
   }
   .navbar .nav-link {
-    font-size: 12px;
+    font-size: 11px;
   }
 }
 /*# sourceMappingURL=Navbar.css.map */

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useCallback, Fragment } from 'react'
 import { Redirect } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
@@ -282,43 +282,47 @@ const SearchWord = ({ setTrie, setNameToVisualise, users: { users, trie, loading
   if (nameToVisualise.length > 0) {
     return <Redirect to='/visualise' />
   } else {
-    return ( 
-      <div className="search-form fade-out">
-        <div className="instruction line-1"><span className="line-1-text">Enter a word to see</span></div>
-        <div className="instruction line-2"><span className="line-2-text">how it is kept in the</span></div>
-        <div className="instruction line-3"><span className="line-3-text">Trie data structure</span></div>
-        <svg className="search-form-frame" width="285" height="88">
-          <path className="draw-me-1" d="M 40 20 L 20 20 L 5 35 L 5 55 L 33 83 L 283 83" fill="none" stroke="#727779" />
-          <path className="draw-me-2" d="M 19 69 L 29 59 L 40 59" fill="none" stroke="#727779" />
-        </svg>
-        <h1 className="form-text">Search For Name</h1>
-        <form onSubmit={event => onSubmit(event)}>
-          <div className="form-group">
-            <label className="search-input-label form-text" htmlFor="name">Name</label>
-            <input 
-              type="text" 
-              name="name" 
-              value={formData.focusIndex === undefined ? formData.name : formData.suggestions[formData.focusIndex]}
-              onChange={event => onChange(event)} 
-              autoComplete="off" 
-              required 
-            />
-          </div>
-          <button type="submit"><div className="search-button-label form-text">search</div></button>
-        </form>
-        <div className="auto-complete">
-          <svg className="suggestion-popup-frame" width="162" height="136">
-            <path className="draw-me-3 suggestion-popup-frame-path" d="M 7 2 L 155 2 L 160 7 L 160 129 L 155 134 L 7 134 L 2 129 L 2 7 L 7 2" fill="none" stroke="#727779" />
+    return (
+      <Fragment>
+        <div className="space-creator-1"></div>
+        <div className="search-form fade-out">
+          <div className="instruction line-1"><span className="line-1-text">Enter a word to see</span></div>
+          <div className="instruction line-2"><span className="line-2-text">how it is kept in the</span></div>
+          <div className="instruction line-3"><span className="line-3-text">Trie data structure</span></div>
+          <svg className="search-form-frame" width="285" height="88">
+            <path className="draw-me-1" d="M 40 20 L 20 20 L 5 35 L 5 55 L 33 83 L 283 83" fill="none" stroke="#727779" />
+            <path className="draw-me-2" d="M 19 69 L 29 59 L 40 59" fill="none" stroke="#727779" />
           </svg>
-          {formData && formData.suggestions.map((suggestion, index) => {
-            const className = index === formData.focusIndex ? 'word focus' : 'word'
-            
-            return (
-              <div className={className} onClick={event => onClick(event)} key={suggestion}>{suggestion}</div>
-            )
-          })}
+          <h1 className="form-text">Search For Name</h1>
+          <form onSubmit={event => onSubmit(event)}>
+            <div className="form-group">
+              <label className="search-input-label form-text" htmlFor="name">Name</label>
+              <input 
+                type="text" 
+                name="name" 
+                value={formData.focusIndex === undefined ? formData.name : formData.suggestions[formData.focusIndex]}
+                onChange={event => onChange(event)} 
+                autoComplete="off" 
+                required 
+              />
+            </div>
+            <button type="submit"><div className="search-button-label form-text">search</div></button>
+          </form>
+          <div className="auto-complete">
+            <svg className="suggestion-popup-frame" width="162" height="136">
+              <path className="draw-me-3 suggestion-popup-frame-path" d="M 7 2 L 155 2 L 160 7 L 160 129 L 155 134 L 7 134 L 2 129 L 2 7 L 7 2" fill="none" stroke="#727779" />
+            </svg>
+            {formData && formData.suggestions.map((suggestion, index) => {
+              const className = index === formData.focusIndex ? 'word focus' : 'word'
+              
+              return (
+                <div className={className} onClick={event => onClick(event)} key={suggestion}>{suggestion}</div>
+              )
+            })}
+          </div>
         </div>
-      </div>
+        <div className="space-creator-2"></div>
+      </Fragment>
     )
   }
 }

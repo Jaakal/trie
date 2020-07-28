@@ -122,3 +122,26 @@
 .fade-out {
   opacity: 0 !important;
 }
+
+.space-creator-1 {
+  min-height: 266px;
+  z-index: -9999;
+}
+
+.space-creator-2 {
+  min-height: 140px;
+  z-index: -9999;
+}
+
+
+@media screen and (max-width: 800px) {
+  .instruction {
+    font-size: 24px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .instruction {
+    font-size: 24px;
+  }
+}
