@@ -1,0 +1,124 @@
+@import 'variables';
+
+.search-form {
+  position: relative;
+  padding: 0 20px 10px 41px;
+
+  .search-form-frame {
+    position: absolute;
+    top: -10px;
+    left: 0;
+    pointer-events: none;
+  }
+
+  h1 {
+    font-family: 'Julius Sans One';
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: $typeface-color-grey;
+  }
+
+  form {
+    display: flex;
+    position: relative;
+  }
+
+  .search-input-label {
+    position: absolute;
+    top: 7px;
+    height: 30px;
+    padding: 0 5px;
+    margin-right: 10px;
+    font-family: 'Poiret One';
+    font-size: 16px;
+    outline: none;
+    border: none;
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  input[type="text"] {
+    height: 30px;
+    padding: 0 5px;
+    margin-right: 10px;
+    font-family: 'Poiret One';
+    font-size: 18px;
+    outline: none;
+    border: none;
+    // border-bottom: 1px solid black;
+  }
+
+  button[type="submit"] {
+    font-family: 'Julius Sans One';
+    border: none;
+    background-color: #ffffff;
+    color: #dc1b03;
+    outline: none;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .auto-complete {
+    position: absolute;
+    left: 41px;
+    bottom: -124px;
+    width: 156px;
+    height: 114px;
+
+    .word {
+      padding: 4px 4px;
+      margin: 1px;
+      font-family: 'Poiret One';
+      font-size: 16px;
+      border-radius: 5px;
+      // background-color: antiquewhite;
+      
+      &:hover {
+        cursor: pointer;
+        color: $typeface-color-grey;
+      }
+    }
+    
+    .word.focus {
+      background-color: antiquewhite;
+    }
+  }
+
+  .suggestion-popup-frame {
+    position: absolute;
+    left: -3px;
+    top: -3px;
+    pointer-events: none;
+  }
+}
+
+.instruction {
+  position: absolute;
+  font-family: 'Poiret One';
+  font-size: 30px;
+  white-space: nowrap;
+  background: linear-gradient(to bottom, transparent, transparent 30%, rgba(255, 0, 0, 0.5) 30%);
+  z-index: -9999;
+}
+
+.line-1 {
+  top: -200px;
+  left: -10px;
+}
+
+.line-2 {
+  top: -150px;
+  right: -10px;
+}
+
+.line-3 {
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.fade-out {
+  opacity: 0 !important;
+}

@@ -1,0 +1,125 @@
+.search-form {
+  position: relative;
+  padding: 0 20px 10px 41px;
+}
+
+.search-form .search-form-frame {
+  position: absolute;
+  top: -10px;
+  left: 0;
+  pointer-events: none;
+}
+
+.search-form h1 {
+  font-family: 'Julius Sans One';
+  font-size: 20px;
+  margin-bottom: 15px;
+  color: #727779;
+}
+
+.search-form form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+}
+
+.search-form .search-input-label {
+  position: absolute;
+  top: 7px;
+  height: 30px;
+  padding: 0 5px;
+  margin-right: 10px;
+  font-family: 'Poiret One';
+  font-size: 16px;
+  outline: none;
+  border: none;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.search-form input[type="text"] {
+  height: 30px;
+  padding: 0 5px;
+  margin-right: 10px;
+  font-family: 'Poiret One';
+  font-size: 18px;
+  outline: none;
+  border: none;
+}
+
+.search-form button[type="submit"] {
+  font-family: 'Julius Sans One';
+  border: none;
+  background-color: #ffffff;
+  color: #dc1b03;
+  outline: none;
+}
+
+.search-form button[type="submit"]:hover {
+  cursor: pointer;
+}
+
+.search-form .auto-complete {
+  position: absolute;
+  left: 41px;
+  bottom: -124px;
+  width: 156px;
+  height: 114px;
+}
+
+.search-form .auto-complete .word {
+  padding: 4px 4px;
+  margin: 1px;
+  font-family: 'Poiret One';
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.search-form .auto-complete .word:hover {
+  cursor: pointer;
+  color: #727779;
+}
+
+.search-form .auto-complete .word.focus {
+  background-color: antiquewhite;
+}
+
+.search-form .suggestion-popup-frame {
+  position: absolute;
+  left: -3px;
+  top: -3px;
+  pointer-events: none;
+}
+
+.instruction {
+  position: absolute;
+  font-family: 'Poiret One';
+  font-size: 30px;
+  white-space: nowrap;
+  background: -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(30%, transparent), color-stop(30%, rgba(255, 0, 0, 0.5)));
+  background: linear-gradient(to bottom, transparent, transparent 30%, rgba(255, 0, 0, 0.5) 30%);
+  z-index: -9999;
+}
+
+.line-1 {
+  top: -200px;
+  left: -10px;
+}
+
+.line-2 {
+  top: -150px;
+  right: -10px;
+}
+
+.line-3 {
+  top: -100px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+
+.fade-out {
+  opacity: 0 !important;
+}
+/*# sourceMappingURL=SearchWord.css.map */

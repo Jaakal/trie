@@ -5,7 +5,11 @@
   "main": "index.js",
   "scripts": {
     "start": "node server",
-    "dev": "nodemon server"
+    "server": "nodemon server",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "install": "npm install --prefix client",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "Jaak Kivinukk",
   "license": "MIT",
@@ -13,6 +17,7 @@
     "config": "^3.3.1",
     "express": "^4.17.1",
     "express-validator": "^6.5.0",
+    "gsap": "file:gsap-bonus.tgz",
     "mongoose": "^5.9.18"
   },
   "devDependencies": {
