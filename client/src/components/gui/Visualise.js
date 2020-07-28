@@ -30,6 +30,7 @@ const Visualise = ({ nameToVisualise, setNameToVisualise, setAlert, flushAllAler
 
   useEffect(() => {
     if (nameToVisualise !== '') {
+      $('#root').removeClass('padding-on')
       setTimeline(gsap.timeline())
       setCopyOfTheNameToVisualise((' ' + nameToVisualise).slice(1))
       setNameToVisualise('')
@@ -52,8 +53,6 @@ const Visualise = ({ nameToVisualise, setNameToVisualise, setAlert, flushAllAler
 
       const translateYTo = -($(window).height() - $('.navbar').height()) / 2
       const translateYFrom = $('.visualise').height() + translateYTo
-      
-      // const timeline = 
       
       timeline.to('.visualise', {opacity: 1, duration: 0})
       timeline.fromTo(`.visualise`, {

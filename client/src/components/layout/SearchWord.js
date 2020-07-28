@@ -271,6 +271,7 @@ const SearchWord = ({ setTrie, setNameToVisualise, users: { users, trie, loading
     
     // When component has been mounted
     if (!loaded) {
+      $('#root').addClass('padding-on')
       setLoaded(true)
       componentAppearAnimation()
     }

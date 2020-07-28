@@ -26,11 +26,14 @@
 
 #root {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  overflow-y: scroll;
+}
+
+.padding-on {
+  padding: 330px 0 140px 0;
+  overflow: visible !important;
 }
