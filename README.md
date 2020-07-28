@@ -1,6 +1,6 @@
 # Trie - Trie Algorithm Visualization
 
-Trie is an web app, which visualizes Trie data structure. The app is a MERN stack app (MongoDB, Express, React.js and Node.js) and for the state manager I am using Redux.
+Trie is an web app, which visualizes Trie data structure. The app is a MERN stack app (MongoDB, Express, React.js and Node.js) and for the state manager it uses Redux.
 
 <div class="button-group">
   <a href="https://jaak-trie.herokuapp.com/" class="button">Live Version</a> |
@@ -59,7 +59,6 @@ The page will reload if you make edits.<br />
 * [Express](https://expressjs.com/) - Node.js web application framework
 * [HTML](https://en.wikipedia.org/wiki/HTML) - Hypertext Markup Language
 * [SCSS](https://sass-lang.com/) - Sassy CSS
-* [CSS](https://www.w3.org/Style/CSS/Overview.en.html) - Cascading Style Sheets
 * [VS Code](https://code.visualstudio.com/) - The code editor used
 
 ## Assets
