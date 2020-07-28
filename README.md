@@ -19,7 +19,7 @@ Trie is an web app, which visualizes Trie data structure. The app is a MERN stac
 
 ## Getting Started
 
-Clone the repository into your local computer. For the animations you need to download the Club GreenSock module from their [webpage](https://greensock.com/docs/v3/Installation) and put it in the project root directory.
+Clone the repository into your local computer. For the database you will need to create into MongoDB cloud a cluster and feed it with words in a way which mirrors the User model in ./models/User.js and then copy the credentials needed for connecting with the cluster to the ./config/default.json file. For the animations you need to download the Club GreenSock module from their [webpage](https://greensock.com/docs/v3/Installation) and put it in the project root directory.
 
 ### Installing
 
