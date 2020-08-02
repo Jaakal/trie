@@ -19,7 +19,6 @@ gsap.registerPlugin(DrawSVGPlugin, SplitText);
 const Visualise = ({ nameToVisualise, setNameToVisualise, setAlert, flushAllAlerts, trie }) => {
   const [copyOfTheNameToVisualise, setCopyOfTheNameToVisualise] = useState('')
   const [animationPath, setAnimationPath] = useState([])
-  const [timeline, setTimeline] = useState(undefined)
   const alphabet = ['-', ' ', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
   
   const changeExplanationText = useCallback(
@@ -33,7 +32,6 @@ const Visualise = ({ nameToVisualise, setNameToVisualise, setAlert, flushAllAler
   useEffect(() => {
     if (nameToVisualise !== '') {
       $('#root').removeClass('padding-on')
-      setTimeline(gsap.timeline())
       setCopyOfTheNameToVisualise((' ' + nameToVisualise).slice(1))
       setNameToVisualise('')
     }
@@ -47,7 +45,7 @@ const Visualise = ({ nameToVisualise, setNameToVisualise, setAlert, flushAllAler
     console.log(`out: ${animationPath}`)
     if (animationPath.length !== 0) {
       console.log(`animation: ${animationPath}`)
-      console.log(timeline)
+      const timeline = gsap.timeline();
       const width = $('.letter-wrapper').width()
       const unit = width / alphabet.length;
       
@@ -59,9 +57,9 @@ const Visualise = ({ nameToVisualise, setNameToVisualise, setAlert, flushAllAler
       const translateYTo = -($(window).height() - $('.navbar').height()) / 2
       const translateYFrom = $('.visualise').height() + translateYTo
       
-      // timeline.to('.visualise', {opacity: 1, duration: 0})
+      timeline.to('.visualise', {opacity: 1, duration: 0})
       console.log(`${translateYFrom} - ${translateYTo}`)
-      gsap.fromTo(`.visualise`, {
+      timeline.fromTo(`.visualise`, {
         y: translateYFrom
       }, {
         y: translateYTo,
@@ -69,70 +67,70 @@ const Visualise = ({ nameToVisualise, setNameToVisualise, setAlert, flushAllAler
         duration: 4 * animationPath.length 
       }, "+=1")
 
-      // timeline.from('.main-letter', {opacity: 0, duration: 0.8}, `-=${4 * animationPath.length}`)
+      timeline.from('.main-letter', {opacity: 0, duration: 0.8}, `-=${4 * animationPath.length}`)
 
-      // for (let i = 0; i < animationPath.length; i += 1) {
-      //   if (animationPath[i] === NO_LETTER) break
+      for (let i = 0; i < animationPath.length; i += 1) {
+        if (animationPath[i] === NO_LETTER) break
 
-      //   const index1 = i === 0 ? 
-      //     animationPath[i][2][1] === '_' ? 
-      //       alphabet.indexOf(' ') 
-      //       : 
-      //       alphabet.indexOf(animationPath[i][2][1])
-      //     :
-      //     animationPath[i][2][0] === '_' ? 
-      //       alphabet.indexOf(' ') 
-      //       : 
-      //       alphabet.indexOf(animationPath[i][2][0])
-      //   const index2 = animationPath[i][2][1] === '_' ? 
-      //     alphabet.indexOf(' ') 
-      //     : 
-      //     alphabet.indexOf(animationPath[i][2][1])
-      //   const middlePoint = i === 0 ? 
-      //     index1 * unit + unit / 2 
-      //     : 
-      //     index2 * unit + unit / 2
-      //   const letterHalfWidth = $(`.letter-keys-${animationPath[i][2]} .letter-key-${animationPath[i][2][1]}`).width() / 2
-      //   const offsetLeft = (width - $(`.letter-keys.letter-keys-${animationPath[i][2]}`).width()) / 2 + $(`.letter-keys-${animationPath[i][2]} .letter-key-${animationPath[i][2][1]}`)[0].offsetLeft
-      //   const translateX = middlePoint - letterHalfWidth - offsetLeft
+        const index1 = i === 0 ? 
+          animationPath[i][2][1] === '_' ? 
+            alphabet.indexOf(' ') 
+            : 
+            alphabet.indexOf(animationPath[i][2][1])
+          :
+          animationPath[i][2][0] === '_' ? 
+            alphabet.indexOf(' ') 
+            : 
+            alphabet.indexOf(animationPath[i][2][0])
+        const index2 = animationPath[i][2][1] === '_' ? 
+          alphabet.indexOf(' ') 
+          : 
+          alphabet.indexOf(animationPath[i][2][1])
+        const middlePoint = i === 0 ? 
+          index1 * unit + unit / 2 
+          : 
+          index2 * unit + unit / 2
+        const letterHalfWidth = $(`.letter-keys-${animationPath[i][2]} .letter-key-${animationPath[i][2][1]}`).width() / 2
+        const offsetLeft = (width - $(`.letter-keys.letter-keys-${animationPath[i][2]}`).width()) / 2 + $(`.letter-keys-${animationPath[i][2]} .letter-key-${animationPath[i][2][1]}`)[0].offsetLeft
+        const translateX = middlePoint - letterHalfWidth - offsetLeft
 
-      //   if (i === 0) {
-      //     $(`.vertical-line-1-${animationPath[i][2]}`).attr('d', `M ${width / 2} 5 L ${width / 2} 30`)
-      //     $(`.diagonal-line-${animationPath[i][2]}`).attr('d', `M ${width / 2} 30 L ${index1 * unit + unit / 2} 82`)
-      //     $(`.vertical-line-2-${animationPath[i][2]}`).attr('d', `M ${index1 * unit + unit / 2} 82 L ${index1 * unit + unit / 2} 112`)
-      //   } else {
-      //     $(`.vertical-line-1-${animationPath[i][2]}`).attr('d', `M ${index1 * unit + unit / 2} 5 L ${index1 * unit + unit / 2} 30`)
-      //     $(`.diagonal-line-${animationPath[i][2]}`).attr('d', `M ${index1 * unit + unit / 2} 30 L ${index2 * unit + unit / 2} 82`)
-      //     $(`.vertical-line-2-${animationPath[i][2]}`).attr('d', `M ${index2 * unit + unit / 2} 82 L ${index2 * unit + unit / 2} 112`)
-      //   }
+        if (i === 0) {
+          $(`.vertical-line-1-${animationPath[i][2]}`).attr('d', `M ${width / 2} 5 L ${width / 2} 30`)
+          $(`.diagonal-line-${animationPath[i][2]}`).attr('d', `M ${width / 2} 30 L ${index1 * unit + unit / 2} 82`)
+          $(`.vertical-line-2-${animationPath[i][2]}`).attr('d', `M ${index1 * unit + unit / 2} 82 L ${index1 * unit + unit / 2} 112`)
+        } else {
+          $(`.vertical-line-1-${animationPath[i][2]}`).attr('d', `M ${index1 * unit + unit / 2} 5 L ${index1 * unit + unit / 2} 30`)
+          $(`.diagonal-line-${animationPath[i][2]}`).attr('d', `M ${index1 * unit + unit / 2} 30 L ${index2 * unit + unit / 2} 82`)
+          $(`.vertical-line-2-${animationPath[i][2]}`).attr('d', `M ${index2 * unit + unit / 2} 82 L ${index2 * unit + unit / 2} 112`)
+        }
         
-      //   timeline.from(`.vertical-line-1-${animationPath[i][2]}`, { 
-      //     duration: 0.5, 
-      //     drawSVG: "0% 0%", 
-      //     onStart: () => changeExplanationText('Moving onto the new child note.') 
-      //     }, 
-      //   `-=${4 * (animationPath.length - i)}`)
-      //   timeline.from(`.diagonal-line-${animationPath[i][2]}`, { duration: 1, drawSVG: "0% 0%", ease: 'none' }, `-=${4 * (animationPath.length - i) - 0.5}`)
-      //   timeline.from(`.vertical-line-2-${animationPath[i][2]}`, { duration: 0.5, drawSVG: "0% 0%", ease: 'none' }, `-=${4 * (animationPath.length - i) - 1.5}`)
+        timeline.from(`.vertical-line-1-${animationPath[i][2]}`, { 
+          duration: 0.5, 
+          drawSVG: "0% 0%", 
+          onStart: () => changeExplanationText('Moving onto the new child note.') 
+          }, 
+        `-=${4 * (animationPath.length - i)}`)
+        timeline.from(`.diagonal-line-${animationPath[i][2]}`, { duration: 1, drawSVG: "0% 0%", ease: 'none' }, `-=${4 * (animationPath.length - i) - 0.5}`)
+        timeline.from(`.vertical-line-2-${animationPath[i][2]}`, { duration: 0.5, drawSVG: "0% 0%", ease: 'none' }, `-=${4 * (animationPath.length - i) - 1.5}`)
         
-      //   const removeAwayFromTheScreenLength = Math.max($(window).width(), $(`.letter-keys-${animationPath[i][2]}`).width())
+        const removeAwayFromTheScreenLength = Math.max($(window).width(), $(`.letter-keys-${animationPath[i][2]}`).width())
 
-      //   timeline.fromTo(`.letter-keys-${animationPath[i][2]}`, {
-      //     x: translateX < 0 ? -removeAwayFromTheScreenLength : removeAwayFromTheScreenLength,
-      //     onStart: () => changeExplanationText('Searching the next character from the child notes.')
-      //   }, {
-      //     x: translateX,
-      //     ease: "power2",
-      //     duration: 0.8 
-      //   }, `-=${4 * (animationPath.length - i) - 2}`)
+        timeline.fromTo(`.letter-keys-${animationPath[i][2]}`, {
+          x: translateX < 0 ? -removeAwayFromTheScreenLength : removeAwayFromTheScreenLength,
+          onStart: () => changeExplanationText('Searching the next character from the child notes.')
+        }, {
+          x: translateX,
+          ease: "power2",
+          duration: 0.8 
+        }, `-=${4 * (animationPath.length - i) - 2}`)
 
-      //   timeline.from(`.main-letter-frame-${animationPath[i][2]}`, {
-      //     duration: 1,
-      //     drawSVG: "50% 50%"            
-      //   }, `-=${4 * (animationPath.length - i) - 2.8}`);
+        timeline.from(`.main-letter-frame-${animationPath[i][2]}`, {
+          duration: 1,
+          drawSVG: "50% 50%"            
+        }, `-=${4 * (animationPath.length - i) - 2.8}`);
 
-      //   timeline.to(`.letter-keys-${animationPath[i][2]} .letter-key-${animationPath[i][0] === ' ' ? '_' : animationPath[i][0]}`, { duration: 0.5, color:"#ff0004"}, `-=${4 * (animationPath.length - i)}`)
-      // }
+        timeline.to(`.letter-keys-${animationPath[i][2]} .letter-key-${animationPath[i][0] === ' ' ? '_' : animationPath[i][0]}`, { duration: 0.5, color:"#ff0004"}, `-=${4 * (animationPath.length - i)}`)
+      }
 
       const mySplitText = new SplitText(".result", {type: "words, chars"})
       
@@ -146,12 +144,13 @@ const Visualise = ({ nameToVisualise, setNameToVisualise, setAlert, flushAllAler
         stagger: 0.02,
         onStart: () => flushAllAlerts()
       }, "-=0.5")
+      console.log(timeline)
+      timeline.play();
     }
     return () => {
-      if (timeline) timeline.kill()
       flushAllAlerts()
     }
-  }, [nameToVisualise, setNameToVisualise, copyOfTheNameToVisualise, animationPath, trie, alphabet, changeExplanationText, flushAllAlerts, timeline])
+  }, [nameToVisualise, setNameToVisualise, copyOfTheNameToVisualise, animationPath, trie, alphabet, changeExplanationText, flushAllAlerts])
 
   return (
     <div className="visualise">
