@@ -13,6 +13,9 @@ import { createTrie, getFirstFiveWords } from '../../utility/trie'
 
 import '../../css/SearchWord.css'
 
+ // Register plugins for GSAP
+ gsap.registerPlugin(DrawSVGPlugin, SplitText);
+
 const SearchWord = ({ setTrie, setNameToVisualise, users: { users, trie, loading }, nameToVisualise }) => {
   const [loaded, setLoaded] = useState(false)
   const [splitText, setSplitText] = useState(undefined)
@@ -116,7 +119,7 @@ const SearchWord = ({ setTrie, setNameToVisualise, users: { users, trie, loading
         onComplete: () => setNameToVisualise(nameToVisualise.toLowerCase())
         }, "-=0.5")
     },
-    [setNameToVisualise, splitText],
+    [setNameToVisualise, splitText, instructionLine1, instructionLine2, instructionLine3],
   )
 
   const onClick = event => {
@@ -241,9 +244,6 @@ const SearchWord = ({ setTrie, setNameToVisualise, users: { users, trie, loading
   )
   
   useEffect(() => {
-    // Register plugins for GSAP
-    gsap.registerPlugin(DrawSVGPlugin, SplitText);
-    
     // When suggestion in the popup is clicked or enter pressed
     if (formData.submit && $("input[type='text']")[0] && $("input[type='text']")[0].defaultValue === formData.name) {
       onValidName(formData.name)

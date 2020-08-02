@@ -14,6 +14,8 @@ import { NO_LETTER, WORD_EXISTS } from '../../actions/types'
 
 import '../../css/Visualise.css'
 
+gsap.registerPlugin(DrawSVGPlugin, SplitText);
+
 const Visualise = ({ nameToVisualise, setNameToVisualise, setAlert, flushAllAlerts, trie }) => {
   const [copyOfTheNameToVisualise, setCopyOfTheNameToVisualise] = useState('')
   const [animationPath, setAnimationPath] = useState([])
@@ -41,8 +43,6 @@ const Visualise = ({ nameToVisualise, setNameToVisualise, setAlert, flushAllAler
     }
     
     if (animationPath.length !== 0) {
-      gsap.registerPlugin(DrawSVGPlugin, SplitText);
-
       const width = $('.letter-wrapper').width()
       const unit = width / alphabet.length;
       
