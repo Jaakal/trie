@@ -9,7 +9,7 @@
   top: 0;
   // padding: 40px 0;
   overflow: hidden;
-  opacity: 0;
+  // opacity: 0;
 }
 
 .letter-wrapper {
@@ -64,7 +64,6 @@
 
 @media screen and (max-width: 500px) {
   .result {
-    
     font-size: 18px;
   }
 }
