@@ -39,10 +39,14 @@ const Visualise = ({ nameToVisualise, setNameToVisualise, setAlert, flushAllAler
     }
 
     if (copyOfTheNameToVisualise !== '' && animationPath.length === 0) {
+      console.log(`first: ${animationPath}`)
       setAnimationPath(createTheAnimationPath(trie, copyOfTheNameToVisualise))
+      console.log(`second: ${animationPath}`)
     }
     
+    console.log(`out: ${animationPath}`)
     if (animationPath.length !== 0) {
+      console.log(`animation: ${animationPath}`)
       const width = $('.letter-wrapper').width()
       const unit = width / alphabet.length;
       
