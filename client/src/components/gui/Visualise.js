@@ -61,7 +61,7 @@ const Visualise = ({ nameToVisualise, setNameToVisualise, setAlert, flushAllAler
       
       // timeline.to('.visualise', {opacity: 1, duration: 0})
       console.log(`${translateYFrom} - ${translateYTo}`)
-      timeline.fromTo(`.visualise`, {
+      gsap.fromTo(`.visualise`, {
         y: translateYFrom
       }, {
         y: translateYTo,
