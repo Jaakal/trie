@@ -19,7 +19,6 @@ gsap.registerPlugin(DrawSVGPlugin, SplitText);
 const Visualise = ({ nameToVisualise, setNameToVisualise, setAlert, flushAllAlerts, trie }) => {
   const [copyOfTheNameToVisualise, setCopyOfTheNameToVisualise] = useState('')
   const [animationPath, setAnimationPath] = useState([])
-  const [timeline, setTimeline] = useState(undefined)
   const alphabet = ['-', ' ', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
   
   const changeExplanationText = useCallback(
@@ -31,9 +30,10 @@ const Visualise = ({ nameToVisualise, setNameToVisualise, setAlert, flushAllAler
   )
 
   useEffect(() => {
+    const timeline = gsap.timeline();
+
     if (nameToVisualise !== '') {
       $('#root').removeClass('padding-on')
-      setTimeline(gsap.timeline())
       setCopyOfTheNameToVisualise((' ' + nameToVisualise).slice(1))
       setNameToVisualise('')
     }
@@ -43,7 +43,6 @@ const Visualise = ({ nameToVisualise, setNameToVisualise, setAlert, flushAllAler
     }
     
     if (animationPath.length !== 0) {
-      // const timeline = gsap.timeline();
       const width = $('.letter-wrapper').width()
       const unit = width / alphabet.length;
       
