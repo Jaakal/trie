@@ -19,6 +19,7 @@ gsap.registerPlugin(DrawSVGPlugin, SplitText);
 const Visualise = ({ nameToVisualise, setNameToVisualise, setAlert, flushAllAlerts, trie }) => {
   const [copyOfTheNameToVisualise, setCopyOfTheNameToVisualise] = useState('')
   const [animationPath, setAnimationPath] = useState([])
+  const [timeline, setTimeline] = useState(undefined)
   const alphabet = ['-', ' ', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
   
   const changeExplanationText = useCallback(
@@ -32,20 +33,17 @@ const Visualise = ({ nameToVisualise, setNameToVisualise, setAlert, flushAllAler
   useEffect(() => {
     if (nameToVisualise !== '') {
       $('#root').removeClass('padding-on')
+      setTimeline(gsap.timeline())
       setCopyOfTheNameToVisualise((' ' + nameToVisualise).slice(1))
       setNameToVisualise('')
     }
 
     if (copyOfTheNameToVisualise !== '' && animationPath.length === 0) {
-      console.log(`first: ${animationPath}`)
       setAnimationPath(createTheAnimationPath(trie, copyOfTheNameToVisualise))
-      console.log(`second: ${animationPath}`)
     }
     
-    console.log(`out: ${animationPath}`)
     if (animationPath.length !== 0) {
-      console.log(`animation: ${animationPath}`)
-      const timeline = gsap.timeline();
+      // const timeline = gsap.timeline();
       const width = $('.letter-wrapper').width()
       const unit = width / alphabet.length;
       
@@ -58,7 +56,6 @@ const Visualise = ({ nameToVisualise, setNameToVisualise, setAlert, flushAllAler
       const translateYFrom = $('.visualise').height() + translateYTo
       
       timeline.to('.visualise', {opacity: 1, duration: 0})
-      console.log(`${translateYFrom} - ${translateYTo}`)
       timeline.fromTo(`.visualise`, {
         y: translateYFrom
       }, {
@@ -144,10 +141,11 @@ const Visualise = ({ nameToVisualise, setNameToVisualise, setAlert, flushAllAler
         stagger: 0.02,
         onStart: () => flushAllAlerts()
       }, "-=0.5")
-      console.log(timeline)
+
       timeline.play();
     }
     return () => {
+      if (timeline) timeline.kill()
       flushAllAlerts()
     }
   }, [nameToVisualise, setNameToVisualise, copyOfTheNameToVisualise, animationPath, trie, alphabet, changeExplanationText, flushAllAlerts])
