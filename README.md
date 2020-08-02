@@ -1,6 +1,6 @@
 # Trie - Trie Algorithm Visualization
 
-Trie is an web app, which visualizes Trie data structure. The app is a MERN stack app (MongoDB, Express, React.js and Node.js) and for the state manager it uses Redux. Animations are made with the GreenShock professional-grade JavaScript animation for the modern web tool.
+Trie is a web app, which visualizes Trie data structure. The app is a MERN stack app (MongoDB, Express, React.js and Node.js) and for the state manager it uses Redux. Animations are made with the GreenShock professional-grade JavaScript animation tool for the modern web.
 
 <div class="button-group">
   <a href="https://jaak-trie.herokuapp.com/" class="button">Live Version</a> |
