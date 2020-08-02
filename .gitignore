@@ -2,3 +2,4 @@ node_modules/
 /gsap-bonus.tgz
 /config/default.json
 /config/production.json
+/.DS_Store
