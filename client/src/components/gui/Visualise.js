@@ -47,6 +47,7 @@ const Visualise = ({ nameToVisualise, setNameToVisualise, setAlert, flushAllAler
     console.log(`out: ${animationPath}`)
     if (animationPath.length !== 0) {
       console.log(`animation: ${animationPath}`)
+      console.log(timeline)
       const width = $('.letter-wrapper').width()
       const unit = width / alphabet.length;
       
@@ -59,6 +60,7 @@ const Visualise = ({ nameToVisualise, setNameToVisualise, setAlert, flushAllAler
       const translateYFrom = $('.visualise').height() + translateYTo
       
       // timeline.to('.visualise', {opacity: 1, duration: 0})
+      console.log(`${translateYFrom} - ${translateYTo}`)
       timeline.fromTo(`.visualise`, {
         y: translateYFrom
       }, {
